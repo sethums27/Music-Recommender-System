@@ -1,0 +1,11 @@
+flask
+opencv-python
+nltk
+pandas
+tensorflow
+scikit-learn
+pillow
+scikit-image
+spotipy
+git+https://github.com/ShoneGK/ChatterPy
+chatterbot-corpus
