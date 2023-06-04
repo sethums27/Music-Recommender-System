@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Music-Emo</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/bootstrap.min.css" )}}>
+    <!-- style css -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/style.css" )}}>
+    <!-- Responsive-->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/responsive.css" )}}>
+    <!-- fevicon -->
+    <link rel="icon" href={{ url_for('static', filename="assets/images/fevicon.png" )}} type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/jquery.mCustomScrollbar.min.css" )}}>
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        ol {
+            counter-reset: li;
+            /* Initiate a counter */
+            list-style: none;
+            /* Remove default numbering */
+            *list-style: decimal;
+            /* Keep using default numbering for IE6/7 */
+            font: 15px 'trebuchet MS', 'lucida sans';
+            padding: 0;
+            margin-bottom: 4em;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+        }
+
+        ol ol {
+            margin: 0 0 0 2em;
+            /* Add some left margin for inner lists */
+        }
+
+        .rectangle-list a {
+            position: relative;
+            display: block;
+            padding: .4em .4em .4em .8em;
+            *padding: .4em;
+            margin: .5em 0 .5em 2.5em;
+            background: #ddd;
+            color: #444;
+            text-decoration: none;
+            transition: all .3s ease-out;
+        }
+
+        .rectangle-list a:hover {
+            background: #eee;
+            cursor: pointer;
+        }
+
+        .rectangle-list a:before {
+            content: counter(li);
+            counter-increment: li;
+            position: absolute;
+            left: -2.5em;
+            top: 50%;
+            margin-top: -1em;
+            background: #fa8072;
+            height: 2em;
+            width: 2em;
+            line-height: 2em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .rectangle-list a:after {
+            position: absolute;
+            content: '';
+            border: .5em solid transparent;
+            left: -1em;
+            top: 50%;
+            margin-top: -.5em;
+            transition: all .3s ease-out;
+        }
+
+        .rectangle-list a:hover:after {
+            left: -.5em;
+            border-left-color: #fa8072;
+        }
+    </style>
+</head>
+<!-- body -->
+
+<body class="main-layout contact-page">
+
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src={{ url_for('static', filename="assets/images/loading.gif" )}} alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="logo">
+                                    <a href={{ url_for('index') }}><img src={{ url_for('static',
+                                            filename="assets/images/logo.jpg" )}} alt="logo" /></a>
+                                    <h1 style="display: inline;color: white;">Music-Emo</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10">
+                        <div class="menu-area">
+                            <div class="limit-box">
+                                <nav class="main-menu">
+                                    <ul class="menu-area-main">
+                                        <li class="active"> <a href={{ url_for('index') }}>Home</a> </li>
+                                        <li> <a href={{ url_for('about') }}>about</a> </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end header inner -->
+    </header>
+    <!-- end header -->
+
+    <div class="aboutbg" style="margin-bottom: 90px;">
+
+
+    </div>
+    <div class="container">
+        <div>Current Emotion:
+            <h1>
+                {% if emo_r==0 %}
+                Happy
+                {% elif emo_r==1 %}
+                Neutral
+                {% elif emo_r==2 %}
+                Sad
+                {% endif %}
+            </h1>
+            <audio id="player" controls>
+                <source src="{{ songs[0][2] }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <br><br>
+        <div id="res">
+            <h2>Music Suggestions for You...</h2><br>
+            <ol class="rectangle-list">
+                {% for song in songs %}
+                <li>
+                    <a href="{{ song[3] }}" target="_blank">
+                        <h3>{{ song[0] }}</h3>
+                        <h4>{{ song[1] }}</h4>
+                    </a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <br><br>
+        <div>
+            <h3>Result Analysis</h3>
+            <div style="overflow-x:visible;">
+                {% for i in range(5) %}
+                <div style="width: 300px;display:inline-block;">
+                    <img src="static/output/{{dir_f[i]}}">
+                    {% if emo_f[i]==0 %}
+                    <h6 style="">Happy</h6>
+                    {% elif emo_f[i]==1 %}
+                    <h6 style="">Neutral</h6>
+                    {% elif emo_f[i]==2 %}
+                    <h6 style="">Sad</h6>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <!--  footer -->
+    <div class=" copyright">
+        <p>© 2023 All Rights Reserved. <a href="">Music-Emo</a></p>
+    </div>
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src={{ url_for('static', filename="assets/js/jquery.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/popper.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/bootstrap.bundle.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/jquery-3.0.0.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/plugin.js" )}}></script>
+    <!-- sidebar -->
+    <script src={{ url_for('static', filename="assets/js/jquery.mCustomScrollbar.concat.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/custom.js" )}}></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+    </script>
+    <!-- <script>
+        const div = document.getElementById('res')
+        var language = "{{ lang }}";
+        var musicDirector = "{{ musicdir }}";
+        var singer = "{{ singer }}";
+        var emotion = {% if emo_r == 0 %}"happy"{% elif emo_r == 1 %} "neutral"{% elif emo_r == 2 %} "sad"{% endif %}
+        const API_KEY = "6ea6a3cea4d341a0805abb2ba896c068";
+
+        // Function to search for tracks based on emotions, music director, language, and singer
+        function searchTracks(emotion, musicDirector, language, singer) {
+            // Construct the API request URL
+            let url = `http://ws.audioscrobbler.com/2.0/?method=track.search&api_key=${API_KEY}&format=json`;
+
+            // Add the search criteria to the API request URL
+            if (emotion) {
+                url += `&track=${emotion}`;
+            }
+            /*if (musicDirector) {
+                url += `&artist=${musicDirector}`;
+            }
+            if (language) {
+                url += `&lang=${language}`;
+            }
+            if (singer) {
+                url += `&vocalist=${singer}`;
+            }*/
+
+            // Make the API request using fetch
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Parse the JSON response and get the required information
+                    const tracks = data.results.trackmatches.track;
+                    const trackNames = tracks.map((track) => track.name);
+                    const artistNames = tracks.map((track) => track.artist);
+                    const albumNames = tracks.map((track) => track.album);
+
+                    // Display the results to the user
+                    console.log(`Tracks: ${trackNames}`);
+                    console.log(`Artists: ${artistNames}`);
+                    console.log(`Albums: ${albumNames}`);
+                    for (i = 0; i < 5; i++) {
+                        const track = data.results.trackmatches.track[i];
+                        const trackQuery = `https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=${encodeURIComponent(track.artist)}&track=${encodeURIComponent(track.name)}&api_key=${API_KEY}&format=json`;
+                        fetch(trackQuery)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Extract the URL from the track info
+                                const trackUrl = data.track.url;
+                                console.log(data.track.name)
+                                // Do something with the track URL, such as redirect the user to the page
+                                console.log(trackUrl);
+                                var anchorTag = document.createElement("a");
+
+                                // Set the href attribute of the anchor tag
+                                anchorTag.href = trackUrl;
+
+                                // Set the text content of the anchor tag
+                                anchorTag.textContent = data.track.name;
+
+                                // Append the anchor tag to the div element
+                                div.appendChild(anchorTag);
+
+                                let text = document.createElement("br");
+                                div.appendChild(text);
+                            })
+                            .catch(error => console.error(error));
+                    }
+
+
+                })
+                .catch((error) => {
+                    // Handle errors
+                    console.error(error);
+                });
+
+        }
+
+        // Example usage
+        searchTracks(emotion);
+
+
+        /*var tempo = "upbeat";
+        var valence = "positive";
+
+        // Construct search query
+        var searchQuery = "q=language:" + language + "%20artist:" + musicDirector + "%20artist:" + singer + "%20tempo:" + tempo + "%20valence:" + valence;
+
+        // Send GET request to Spotify API with search query
+        fetch("https://api.spotify.com/v1/search?" + searchQuery, {
+            headers: {
+                "Authorization": "Bearer " + "aef62c1e37e745998171f22605c568b3"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Process search results
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle error
+                console.error(error);
+            });*/
+    </script> -->
+
+</body>
+
+</html>

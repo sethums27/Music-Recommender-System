@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Music-Emo</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/bootstrap.min.css" )}}>
+    <!-- style css -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/style.css" )}}>
+    <!-- Responsive-->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/responsive.css" )}}>
+    <!-- fevicon -->
+    <link rel="icon" href={{ url_for('static', filename="assets/images/fevicon.png" )}} type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href={{ url_for('static', filename="assets/css/jquery.mCustomScrollbar.min.css" )}}>
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        /* Chat container styles */
+        .chat-container {
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-family: sans-serif;
+        }
+
+        /* Chat header styles */
+        .chat-header {
+            background-color: #ff1d00;
+            color: #fff;
+            padding: 10px;
+        }
+
+        /* Chat body styles */
+        .chat-body {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            padding: 10px;
+        }
+
+        /* Chat messages styles */
+        .chat-messages {
+            flex: 1;
+            overflow-y: scroll;
+        }
+
+        /* Style the scrollbar for the div */
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 5px;
+            border: 1px solid #555;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Style for the sent messages */
+        .user {
+            background-color: #ffcc99;
+            /* Set the background color for sent messages */
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the received messages */
+        .bot {
+            background-color: #f0f0f0;
+            /* Set the background color for received messages */
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 60%;
+            margin-right: auto;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        /* Chat input styles */
+        .chat-input {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .chat-input button {
+            background-color: #ff1d00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<!-- body -->
+
+<body class="main-layout contact-page">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src={{ url_for('static', filename="assets/images/loading.gif" )}} alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="logo">
+                                    <a href={{ url_for('index') }}><img src={{ url_for('static',
+                                            filename="assets/images/logo.jpg" )}} alt="logo" /></a>
+                                    <h1 style="display: inline;color: white;">Music-Emo</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10">
+                        <div class="menu-area">
+                            <div class="limit-box">
+                                <nav class="main-menu">
+                                    <ul class="menu-area-main">
+                                        <li class="active"> <a href={{ url_for('index') }}>Home</a> </li>
+                                        <li> <a href={{ url_for('about') }}>about</a> </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end header inner -->
+    </header>
+    <!-- end header -->
+
+    <div class="aboutbg" style="margin-bottom: 90px;">
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6">
+                <img src="{{ url_for('video_feed') }}" style="height: 100%;">
+            </div>
+            <div class=" col-md-6">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h1 style="color: white;">Chatbot</h1>
+                    </div>
+                    <div class="chat-body">
+                        <div class="chat-messages">
+                            <!-- Chat messages will be inserted here -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="msg" placeholder="Type your message...">
+                            <button id="send" onclick="response()">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--  footer -->
+    <div class="copyright">
+        <p>© 2023 All Rights Reserved. <a href="">Music-Emo</a></p>
+    </div>
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src={{ url_for('static', filename="assets/js/jquery.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/popper.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/bootstrap.bundle.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/jquery-3.0.0.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/plugin.js" )}}></script>
+    <!-- sidebar -->
+    <script src={{ url_for('static', filename="assets/js/jquery.mCustomScrollbar.concat.min.js" )}}></script>
+    <script src={{ url_for('static', filename="assets/js/custom.js" )}}></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+    </script>
+    <script>
+        const chatInput = document.querySelector('.chat-input input');
+        const chatButton = document.querySelector('.chat-input button');
+        const chatMessages = document.querySelector('.chat-messages');
+
+        function addChatMessage(text, sender) {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('chat-message-container');
+
+            const message = document.createElement('div');
+            message.classList.add('chat-message');
+            message.classList.add(sender);
+
+            const messageText = document.createTextNode(text);
+            message.appendChild(messageText);
+
+            messageContainer.appendChild(message);
+            chatMessages.appendChild(messageContainer);
+
+            // Scroll to bottom of message container
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function response() {
+            const message = chatInput.value;
+            chatInput.value = ""
+            addChatMessage(message, 'user');
+
+            $.ajax({
+                url: '/chat2',
+                type: 'POST',
+                data: { message: message },
+                success: function (response) {
+                    console.log(response);
+                    if (response == '/result') {
+                        window.location.replace(response)
+                    } else {
+                        addChatMessage(response, 'bot');
+
+                    }
+                },
+                error: function (error) {
+                    // Handle the error
+                    console.log(error);
+                }
+            });
+
+
+        }
+    </script>
+</body>
+
+</html>
